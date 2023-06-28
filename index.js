@@ -20,8 +20,8 @@ module.exports = {
 				})
 		*/
 		ctx.command('攻略 <key:string>')
-			.action(async (key) => {
-				let name = key.args[0]
+			.action(async ({session},key) => {
+				let name = key
 				const res = await axios.get(`https://arona.diyigemt.com/api/v1/image?name=${name}`)
 				const data = res.data.data
 				if (data.length === 1) {
@@ -29,8 +29,14 @@ module.exports = {
 					// console.log(segment.image(`https://arona.cdn.diyigemt.com/image${data[0].path}`))
 					return h('image',{src:`https://arona.cdn.diyigemt.com/image${data[0].path}`})
 				}
-				else
-					return res
+				else {
+					let msg = ''
+					for(let i = 0;i < data.length;i++) {
+						msg += (i+1) + '.' + data[i].name + '\n'
+					}
+					const id = await session.prompt.number(`未找到相关信息，是否在查找以下信息：\n${msg}\n请输入对应数字`)
+					return h('image',{src:`https://arona.cdn.diyigemt.com/image${data[id-1].path}`})
+				}
 			})
 
 		// 2.定义中间件
