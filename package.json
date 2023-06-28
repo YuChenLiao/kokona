@@ -17,5 +17,8 @@
     ],
     "scripts": {
         "pub": "npm publish --access public"
+    },
+    "dependencies": {
+        "axios": "^1.4.0"
     }
 }
