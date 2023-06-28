@@ -1,0 +1,19 @@
+{
+    "name": "zhin-plugin-kokona",
+    "version": "0.0.1",
+    "main": "index.js",
+    "description": "kokona plugin",
+    "keywords": [
+        "kokona",
+        "plugin",
+        "zhin"
+    ],
+    "files": [
+        "LICENSE",
+        "/src/**/*.js",
+        "/src/**/*.d.ts"
+    ],
+    "scripts": {
+        "pub": "npm publish --access public"
+    }
+}
