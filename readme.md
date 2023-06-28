@@ -10,7 +10,15 @@
 
 1、在 zhin 的插件目录 plugins 下clone本项目并安装axios
 
+```bash
+  git clone https://github.com/YuChenLiao/kokona.git
+```
+
 2、在 zhin 项目根目录下使用npm安装
+
+```bash
+  npm i zhin-plugin-kokona
+```
 
 ## 鸣谢
 
