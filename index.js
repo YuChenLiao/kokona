@@ -1,4 +1,5 @@
 import axios from "axios"
+import { h } from 'zhin'
 module.exports = {
 	name: 'kokona',
 	/**
@@ -24,9 +25,9 @@ module.exports = {
 				const res = await axios.get(`https://arona.diyigemt.com/api/v1/image?name=${name}`)
 				const data = res.data.data
 				if (data.length === 1) {
-					let img = await axios.get(`https://arona.cdn.diyigemt.com/image${data[0].path}`)
-					console.log(img.data)
-					return img
+					// let img = await axios.get(`https://arona.cdn.diyigemt.com/image${data[0].path}`)
+					// console.log(segment.image(`https://arona.cdn.diyigemt.com/image${data[0].path}`))
+					return h('image',{src:`https://arona.cdn.diyigemt.com/image${data[0].path}`})
 				}
 				else
 					return res
