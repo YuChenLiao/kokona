@@ -32,6 +32,12 @@
   npm i zhin-plugin-kokona
 ```
 
+## 指令格式
+
+```
+  攻略 <查询文本>
+```
+
 ## 鸣谢
 
 [Arona Bot](https://doc.arona.diyigemt.com/api/) 感谢大佬提供的API
