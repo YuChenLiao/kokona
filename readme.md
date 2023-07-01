@@ -14,9 +14,6 @@
 
 [linux 安装方法](https://mongodb.net.cn/manual/administration/install-on-linux/)
 
-```bash
-```
-
 ### 第二步
 
 方式一、在 zhin 的插件目录 plugins 下clone本项目并安装依赖库
