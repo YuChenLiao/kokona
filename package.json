@@ -1,6 +1,6 @@
 {
     "name": "zhin-plugin-kokona",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "main": "index.js",
     "description": "kokona plugin",
     "author": "LYC",

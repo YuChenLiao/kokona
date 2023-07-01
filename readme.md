@@ -1,5 +1,7 @@
 # Blue_Archive_ZhinBot
 
+[项目地址](https://github.com/YuChenLiao/kokona)
+
 碧蓝档案总力攻略图、角色查询插件, 适用于由 zhin 框架所开发的 Bot
 
 实现非常粗糙且丑陋，请各位巨佬嘴下留情
@@ -24,7 +26,7 @@
   npm install
 ```
 
-方式二、在 zhin 项目根目录下使用npm安装
+方式二、在 zhin 项目根目录下使用npm安装(打包时代码丢失，还未解决，不建议使用该方法)
 
 ```bash
   npm i zhin-plugin-kokona
