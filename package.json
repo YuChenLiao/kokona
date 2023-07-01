@@ -1,6 +1,6 @@
 {
     "name": "zhin-plugin-kokona",
-    "version": "0.0.4",
+    "version": "0.0.9",
     "main": "index.js",
     "description": "kokona plugin",
     "author": "LYC",
@@ -12,8 +12,11 @@
     ],
     "files": [
         "LICENSE",
-        "/src/**/*.js",
-        "/src/**/*.d.ts"
+        "src/**/*.js",
+        "src/**/*.d.ts",
+        "components",
+        "models",
+        "mongodb.js"
     ],
     "scripts": {
         "pub": "npm publish --access public"

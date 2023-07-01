@@ -26,7 +26,7 @@
   npm install
 ```
 
-方式二、在 zhin 项目根目录下使用npm安装(打包时代码丢失，还未解决，不建议使用该方法)
+方式二、在 zhin 项目根目录下使用npm安装
 
 ```bash
   npm i zhin-plugin-kokona
