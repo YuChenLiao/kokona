@@ -16,7 +16,6 @@ module.exports = {
 				let name = key
 				const res = await ctx.request.get(`https://arona.diyigemt.com/api/v1/image?name=${name}`)
 				const data = res.data
-				console.log(data)
 				if (data.length === 1) {
 					const path = await getImage(data[0])
 					if (fs.existsSync(path)) {
