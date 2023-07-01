@@ -1,5 +1,6 @@
 /package-lock.json
 node_modules
+images
 
 logs.log
 logs_error.log

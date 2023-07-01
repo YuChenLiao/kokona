@@ -1,6 +1,6 @@
 {
     "name": "zhin-plugin-kokona",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "main": "index.js",
     "description": "kokona plugin",
     "author": "LYC",
@@ -19,6 +19,7 @@
         "pub": "npm publish --access public"
     },
     "dependencies": {
-        "axios": "^1.4.0"
+        "axios": "^1.4.0",
+        "mongoose": "^7.3.1"
     }
 }
