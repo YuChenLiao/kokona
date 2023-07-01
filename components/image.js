@@ -3,8 +3,9 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
-const saveDirectory = './plugins/kokona/images'
+const saveDirectory = './data/image'
 const absolutePath = path.resolve(saveDirectory);
+console.log(absolutePath)
 
 const baseImgUrl = 'https://arona.cdn.diyigemt.com/image'
 
@@ -14,14 +15,14 @@ const getImage = async (data) => {
   })
   if (!item) {
     // 确保保存目录存在
-    if (!fs.existsSync(saveDirectory)) {
-      fs.mkdirSync(saveDirectory);
+    if (!fs.existsSync(absolutePath)) {
+      fs.mkdirSync(absolutePath);
     }
     // 提取图片文件名
     console.log('data.path:', data.path)
     const fileName = path.basename(`${baseImgUrl}${data.path}`);
     // 创建可写流
-    const fileStream = fs.createWriteStream(path.join(saveDirectory, fileName));
+    const fileStream = fs.createWriteStream(path.join(absolutePath, fileName));
     // 发起 HTTP 请求
     const httpsync = await new Promise((resolve, reject) => {
       https.get(`${baseImgUrl}${data.path}`,(response) => {
@@ -57,13 +58,13 @@ const getImage = async (data) => {
     }
     else {
       // 若数据库中已有数据则比较 hash 值，相同则直接本地读取，不同则再次请求并覆盖本地数据
-      if (!fs.existsSync(saveDirectory)) {
-        fs.mkdirSync(saveDirectory);
+      if (!fs.existsSync(absolutePath)) {
+        fs.mkdirSync(absolutePath);
       }
       // 提取图片文件名
       const fileName = path.basename(`${baseImgUrl}?name=${data.name}`);
       // 创建可写流
-      const fileStream = fs.createWriteStream(path.join(saveDirectory, fileName));
+      const fileStream = fs.createWriteStream(path.join(absolutePath, fileName));
       // 发起 HTTP 请求
       const httpsync = await new Promise((resolve, reject) => {
         https.get(`${baseImgUrl}${data.path}`,(response) => {
