@@ -5,7 +5,6 @@ const path = require('path');
 
 const saveDirectory = './data/image'
 const absolutePath = path.resolve(saveDirectory);
-console.log(absolutePath)
 
 const baseImgUrl = 'https://arona.cdn.diyigemt.com/image'
 
@@ -19,7 +18,6 @@ const getImage = async (data) => {
       fs.mkdirSync(absolutePath);
     }
     // 提取图片文件名
-    console.log('data.path:', data.path)
     const fileName = path.basename(`${baseImgUrl}${data.path}`);
     // 创建可写流
     const fileStream = fs.createWriteStream(path.join(absolutePath, fileName));
@@ -35,7 +33,6 @@ const getImage = async (data) => {
           return resolve()
         });
       }).on('error', function (err) {
-        console.error('下载图片时出现错误:', err);
         return reject()
       });
     })
@@ -46,10 +43,8 @@ const getImage = async (data) => {
         hash: data.hash,
         path: imgPath
       })
-      console.log('创建成功:')
       return items.path
     } catch (err) {
-      console.log('创建失败:')
       return 'error'
     }
   } else {
@@ -90,10 +85,9 @@ const getImage = async (data) => {
           hash: data.hash,
           path: imgPath
         })
-        console.log('更新成功:')
         return items.path
       } catch (err) {
-        console.log('更新失败:', err)
+        console.log('数据更新失败:', err)
         return 'error'
       }
     }
