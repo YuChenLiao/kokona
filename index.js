@@ -30,7 +30,7 @@ module.exports = {
 				else {
 					let msg = ''
 					for (let i = 0; i < data.length; i++) {
-						msg += (i + 1) + '.' + data[i].name + '\n'
+						msg += data[i].name + '\n'
 					}
 					const id = await session.prompt.select(`未找到相关信息，是否在查找以下信息`, {
 						child_type: "number",
@@ -40,8 +40,7 @@ module.exports = {
 							value: item
 						}))
 					})
-					let item = id - 1
-					const reCheck = await ctx.request.get(`https://arona.diyigemt.com/api/v1/image?name=${data[item].name}`)
+					const reCheck = await ctx.request.get(`https://arona.diyigemt.com/api/v1/image?name=${id.name}`)
 					const reCheckData = reCheck.data
 					const path = await getImage(reCheckData[0])
 					if (fs.existsSync(path)) {
