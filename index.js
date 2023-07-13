@@ -1,4 +1,3 @@
-import axios from "axios"
 import { h } from 'zhin'
 import fs from 'fs'
 
@@ -35,7 +34,7 @@ module.exports = {
 						child_type: "number",
 						multiple: false,
 						options: data.map((item, index) => ({
-							label: `${index + 1}.${item.name}`,
+							label: `${item.name}`,
 							value: item
 						}))
 					})
