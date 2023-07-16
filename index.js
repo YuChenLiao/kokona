@@ -30,7 +30,7 @@ module.exports = {
 					for (let i = 0; i < data.length; i++) {
 						msg += data[i].name + '\n'
 					}
-					const id = await session.prompt.select(`未找到相关信息，是否在查找以下信息`, {
+					const id = await session.prompt.select(`未找到相关信息，是否在查找以下信息,请输入序号查找`, {
 						child_type: "number",
 						multiple: false,
 						options: data.map((item, index) => ({
