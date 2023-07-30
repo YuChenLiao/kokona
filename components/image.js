@@ -23,7 +23,7 @@ const getImage = async (data) => {
     const fileStream = fs.createWriteStream(path.join(absolutePath, fileName));
     // 发起 HTTP 请求
     const httpsync = await new Promise((resolve, reject) => {
-      https.get(`${baseImgUrl}${data.path}`,(response) => {
+      https.get(`${baseImgUrl}${data.path}`, (response) => {
         // 将响应管道到可写流
         response.pipe(fileStream);
 
@@ -48,24 +48,24 @@ const getImage = async (data) => {
       return 'error'
     }
   } else {
+    // 若数据库中已有数据则比较 hash 值，相同则直接本地读取，不同则再次请求并覆盖本地数据
     if (item.hash === data.hash) {
       return item.path
     }
     else {
-      // 若数据库中已有数据则比较 hash 值，相同则直接本地读取，不同则再次请求并覆盖本地数据
       if (!fs.existsSync(absolutePath)) {
         fs.mkdirSync(absolutePath);
       }
       // 提取图片文件名
-      const fileName = path.basename(`${baseImgUrl}?name=${data.name}`);
+      const fileName = path.basename(path.basename(`${baseImgUrl}${data.path}`));
       // 创建可写流
       const fileStream = fs.createWriteStream(path.join(absolutePath, fileName));
       // 发起 HTTP 请求
       const httpsync = await new Promise((resolve, reject) => {
-        https.get(`${baseImgUrl}${data.path}`,(response) => {
+        https.get(`${baseImgUrl}${data.path}`, (response) => {
           // 将响应管道到可写流
           response.pipe(fileStream);
-  
+
           // 监听下载完成事件
           fileStream.on('finish', function () {
             fileStream.close();
@@ -78,6 +78,7 @@ const getImage = async (data) => {
       })
       const imgPath = `${absolutePath}\\${fileName}`
       try {
+        console.log('开始更新数据')
         const items = await Image.updateOne({
           name: item.name
         }, {
@@ -85,6 +86,7 @@ const getImage = async (data) => {
           hash: data.hash,
           path: imgPath
         })
+        console.log(items.path)
         return items.path
       } catch (err) {
         console.log('数据更新失败:', err)
@@ -94,4 +96,4 @@ const getImage = async (data) => {
   }
 }
 
-module.exports = { getImage }
+export default getImage

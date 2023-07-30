@@ -1,5 +1,6 @@
-import axios from "axios";
+import axios from "axios"
 
+// 数据过大，暂时无限期搁置开发
 const common = "https://lonqie.github.io/SchaleDB/data/common.json"
 const localization = "https://lonqie.github.io/SchaleDB/data/cn/localization.json"
 const raids = "https://lonqie.github.io/SchaleDB/data/cn/raids.min.json"
@@ -37,6 +38,7 @@ const extractCalendarData = async (server) => {
   const studentData = await getData(student_cn)
   const localizationData = await getData(localization)
   const raidData = await getData(raids)
+  console.log(commonData)
   if (!commonData || !studentData || !localizationData || !raidData)
     return null
 
@@ -49,7 +51,7 @@ const extractCalendarData = async (server) => {
       const title = "本期卡池: " + stu_info.Name;
       const start_time = new Date(gacha.start * 1000).toLocaleString();
       const end_time = new Date(gacha.end * 1000).toLocaleString();
-      event_list.push({ title, start: start_time, end: end_time });
+      eventList.push({ title, start: start_time, end: end_time });
     }
   }
 
@@ -66,7 +68,7 @@ const extractCalendarData = async (server) => {
     const event_name = localization_data.EventName[String(event_id)] + event_rerun;
     const start_time = new Date(event.start * 1000).toLocaleString();
     const end_time = new Date(event.end * 1000).toLocaleString();
-    event_list.push({ title: event_name, start: start_time, end: end_time });
+    eventList.push({ title: event_name, start: start_time, end: end_time });
   }
 
   // raid
@@ -107,9 +109,16 @@ const extractCalendarData = async (server) => {
     if (title !== "") {
       const start_time = new Date(raid.start * 1000).toLocaleString();
       const end_time = new Date(raid.end * 1000).toLocaleString();
-      event_list.push({ title, start: start_time, end: end_time });
+      eventList.push({ title, start: start_time, end: end_time });
     }
   }
 
-  return event_list;
+  return eventList;
 }
+
+const fecthData = async (server) => {
+  const data = await extractCalendarData(server)
+  return data
+}
+
+export default fecthData
